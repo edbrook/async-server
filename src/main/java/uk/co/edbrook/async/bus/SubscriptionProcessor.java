@@ -11,11 +11,11 @@ import java.util.Base64;
 
 @Component
 @RequiredArgsConstructor
-public class SubscriptionProcessor implements ApplicationListener<CreateSubscriptionEvent> {
+class SubscriptionProcessor implements ApplicationListener<CreateSubscriptionEvent> {
 
     private static final String SECRET = "SECRET";
 
-    private final RestTemplate restTemplate;
+    private final RestTemplate asyncResponseTemplate;
     private final UriResolver uriResolver;
 
     @Override
@@ -32,7 +32,7 @@ public class SubscriptionProcessor implements ApplicationListener<CreateSubscrip
 
         var uri = uriResolver.resolveForId(requestId);
 
-        restTemplate.postForEntity(uri, asyncResponse, Void.class);
+        asyncResponseTemplate.postForEntity(uri, asyncResponse, Void.class);
     }
 
     private String generateId(String name, String email) {

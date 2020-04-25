@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class SubscriptionService implements SubscriptionTrigger {
+class SubscriptionService implements SubscriptionTrigger {
 
     private final ApplicationEventPublisher publisher;
 
